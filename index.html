@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reconciler</title>
+    </head>
+    <script>
+        function createDomElements(todos) {
+            const parentElement = document.getElementById("mainArea");
+            var em = parentElement.getElementsByClassName("childClass");
+            //Compare incominng array todos with existing array in DOM, placed in parentElement.
+
+            //try to remove any object from em, see whether that changes happens in DOM
+            
+
+            //Compare the two arrays
+            if (todos.length !== em.length) {
+                todos.forEach((element) => {
+                    var id = element.id;
+                    //search this id in existing array, 
+                    //if doesnt exist add this object
+                    // if exists 
+                });
+
+                for (let i = 0; i < em.length; i++) {
+                    console.log(em[i]);
+                    
+                }
+            }
+            
+            parentElement.innerHTML = "";
+            
+            todos.forEach((element) => {
+                const childElement = document.createElement("div");
+                childElement.setAttribute("class", "childClass");
+                const titleElement = document.createElement("span");
+                titleElement.innerHTML = element.title;
+                const descriptionElement = document.createElement("span");
+                descriptionElement.innerHTML = element.description;
+                descriptionElement.setAttribute("id", "description")
+                const delbutton = document.createElement("button");
+                delbutton.setAttribute("onclick", "deleteTodo(" + element.id + ")")
+                delbutton.innerHTML = "Delete";
+
+                childElement.appendChild(titleElement);
+                childElement.appendChild(descriptionElement);
+                childElement.appendChild(delbutton);
+
+                parentElement.appendChild(childElement);
+            });
+        }
+
+        window.setInterval(function () {
+            let todos = [];
+            for (let i = 0; i < Math.floor(Math.random() * 100); i++) {
+                todos.push({
+                    title: "Go to gym",
+                    description: "Go to gym at 7",
+                    id: i + 1
+                })
+            }
+
+            createDomElements(todos);
+        }, 10 * 1000);
+    </script>
+    <body>
+        <div id="mainArea"></div>
+    </body>
+</html>
